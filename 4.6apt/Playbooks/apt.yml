@@ -1,0 +1,24 @@
+---
+- name: apt example 
+  hosts: ubuntu
+  gather_facts: yes
+
+  tasks:
+  - name: Install apache
+    apt:
+      name: 
+        - apache2
+        - php
+      state: present
+      update_cache: yes #check if package is not out of date
+    register: install_apache_debug
+
+  - name: uninstall apache
+    apt:
+      name: apache2
+      state: absent
+    register: uninstall_apache_debug #przypisanie logow z zadania do zmiennej
+
+  - debug: var=install_apache_debug # wysietlenie zmiennej
+  - debug: var=uninstall_apache_debug
+

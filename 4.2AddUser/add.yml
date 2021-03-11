@@ -1,0 +1,17 @@
+---
+- hosts: all
+  gather_facts: true
+  become: yes
+
+  tasks:
+    - name: add user
+      user:
+        name: mat
+        comment: IT
+        ssh_key_file: .ssh/id_rsa
+        group: sudo
+        append: yes
+        shell: /bin/bash
+        #utworzenie hashowanego hasla
+        #openssl passwd -salt <salt> -1 <haslo>
+        password: $1$asdasd$KBcGFYNP7LSMTqnUPDVoU.

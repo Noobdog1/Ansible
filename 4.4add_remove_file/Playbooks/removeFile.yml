@@ -1,0 +1,15 @@
+---
+- name: Usuwanie plikow/foderow
+  hosts: ubuntu
+  gather_facts: yes
+
+  tasks:
+  - name: usuwanie foledru orwaz wszystkiego wewnatrz
+    file:
+      path: /home/user/Folder
+      state: absent
+
+    
+
+
+      

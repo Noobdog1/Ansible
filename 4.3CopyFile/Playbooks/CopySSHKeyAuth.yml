@@ -1,0 +1,14 @@
+---
+- name: Copy ssh key auth between user and root
+  hosts: ubuntu
+  become: true
+  
+  tasks:
+  - name: Copy File
+    copy:
+      src: ../home/user/.ssh
+      dest: /root/.ssh
+      owner: user
+      group: root
+      mode: 0670
+          
