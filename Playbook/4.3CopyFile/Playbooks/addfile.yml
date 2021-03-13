@@ -1,0 +1,14 @@
+---
+- name: Copy File Template
+  hosts: ubuntu
+  become: true
+  
+  tasks:
+  - name: Copy File
+    copy:
+      src: ../Files/index.php
+      dest: /home/user/
+      owner: user
+      group: root
+      mode: 0670
+          

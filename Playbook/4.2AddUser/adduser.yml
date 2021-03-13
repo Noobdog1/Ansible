@@ -1,0 +1,11 @@
+- name: Dodanie usera 
+  hosts: all
+  become: true
+  gather_facts: yes 
+
+  - name: AddUser
+    user: 
+      name: mateusz
+      comment: asdasdasd
+      group: wheel
+      ssh_key_file: .ssh/id_rsa
