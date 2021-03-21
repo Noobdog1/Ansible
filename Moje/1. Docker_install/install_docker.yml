@@ -1,0 +1,49 @@
+---
+  - name: Install Docker on Ubuntu
+    hosts: docker
+    gather_facts: yes
+
+    tasks:
+    - name: apt-get update
+      apt: 
+        update_cache: yes
+
+    - name: Remove old version
+      apt:
+        name: "{{ package }}"
+        state: absent
+      vars:
+        package:
+        - docker
+        - docker-engine
+        - docker.io
+        - containerd
+        - runc
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+
+    - name: apt-key add
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: add apt repozitory
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+        state: present
+        update_cache: yes       
+
+    - name: install newest version
+      apt:
+        name: "{{ package }}"
+        state: present
+        update_cache: yes
+      vars:
+        package:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        #- docker-compose
+
+      
